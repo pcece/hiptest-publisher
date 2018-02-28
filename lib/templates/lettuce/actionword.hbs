@@ -1,0 +1,4 @@
+{{#if rendered_children.gherkin_used_annotations}}
+{{#each rendered_children.gherkin_used_annotations}}@step('{{#remove_last_character ':'}}{{#strip_regexp_delimiters}}{{> gherkin_pattern}}{{/strip_regexp_delimiters}}{{/remove_last_character}}')
+{{/each}}def impl(step{{#if has_parameters?}},{{{ join rendered_children.parameters_ordered_by_pattern ', '}}}{{/if}}):{{#indent}}
+world.actionwords.{{{ underscore rendered_children.name }}}({{#if has_parameters?}}{{#join raw_parameter_names ', '}}{{#replace "__datatable" "datatable"}}{{#replace "__free_text" "free_text"}}{{{underscore this}}}{{/replace}}{{/replace}}{{/join}}{{/if}}){{/indent}}{{/if}}
